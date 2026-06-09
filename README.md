@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Cargo - Cek Resi Online</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f5f9;
+    margin:0;
+}
+
+.header{
+    background:#ffffff;
+    text-align:center;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.logo{
+    max-width:300px;
+}
+
+.container{
+    max-width:700px;
+    margin:30px auto;
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#003399;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#002266;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    background:#eef4ff;
+    border-radius:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img src="logo.jpg" class="logo">
+    <h2>CEK RESI PENGIRIMAN</h2>
+</div>
+
+<div class="container">
+
+<input type="text" id="resi" placeholder="Masukkan Nomor Resi">
+SBN245524
+<button onclick="cekResi()">Lacak Pengiriman</button>
+
+<div id="hasil"></div>
+
+</div>
+
+<script>
+
+const dataResi = {
+
+"SC250609001":{
+pengirim:"Muchlas Ayyub",
+penerima:"Supardi",
+barang:"Honda Beat",
+asal:"Surabaya",
+tujuan:"Penajam",
+status:"Dalam Pengiriman",
+tanggal:"09 Juni 2026"
+}
+
+};
+
+function cekResi(){
+
+let nomor=document.getElementById("resi").value;
+let hasil=document.getElementById("hasil");
+
+if(dataResi[nomor]){
+
+let d=dataResi[nomor];
+
+hasil.innerHTML=`
+<div class="result">
+<b>Nomor Resi:</b> ${nomor}<br>
+<b>Tanggal Kirim:</b> ${d.tanggal}<br>
+<b>Pengirim:</b> ${d.pengirim}<br>
+<b>Penerima:</b> ${d.penerima}<br>
+<b>Barang:</b> ${d.barang}<br>
+<b>Asal:</b> ${d.asal}<br>
+<b>Tujuan:</b> ${d.tujuan}<br>
+<b>Status:</b> ${d.status}
+</div>
+`;
+
+}else{
+
+hasil.innerHTML="<div class='result'>Resi tidak ditemukan.</div>";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
